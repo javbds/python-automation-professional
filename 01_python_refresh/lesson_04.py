@@ -53,10 +53,11 @@ def inspect_directory(folder: Path) -> dict[str, object]:
             "Your user account does not have permission to access this folder."
             ),
         }
+    
     except OSError as error:
         return {
             "success": False,
-            "error": f"Something went wrong while accessing '{folder}': {e}",
+            "error": f"Something went wrong while accessing '{folder}': {error}",
         }
     total_items = file_count + folder_count
 

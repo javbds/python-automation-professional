@@ -1,0 +1,444 @@
+from logging import info
+from typing import TypedDict
+from pathlib import Path
+from collections import Counter
+
+class DirectoryInfo(TypedDict):
+    success: bool
+    error: str | None
+    name: str
+    absolute_path: Path
+    recursive: bool
+    files: int
+    folders: int
+    total_items: int
+    file_types: Counter[str]
+    largest_file: Path | None
+    largest_size: int
+    skipped_items: list[str]
+    skipped_count: int
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# These are module-level constants.
+# We define them once near the top because several parts of the program
+# may eventually need to convert file sizes.
+BYTES_PER_KB = 1024
+BYTES_PER_MB = 1024 * BYTES_PER_KB
+BYTES_PER_GB = 1024 * BYTES_PER_MB
+
+
+def get_directory() -> Path | None:
+    """
+    Ask the user for a directory path and validate it.
+
+    Keeps prompting until:
+    - The user enters a valid folder.
+    - The user enters 'q' to quit.
+
+    Returns:
+        A valid Path object, or None if the user quits.
+    """
+    print("\nProject root:", PROJECT_ROOT)
+    print("Current working directory:", Path.cwd())
+    print("Home directory:", Path.home())
+
+    while True:
+        user_input = (
+            input("\nEnter a folder path (or 'q' to quit): ")
+            .strip()
+            .strip('"')
+        )
+
+        if user_input.lower() == "q":
+            return None
+
+        # expanduser() allows shortcuts such as:
+        # ~
+        # ~/Downloads
+        entered_path = Path(user_input).expanduser()
+
+        if entered_path.is_absolute():
+            folder = entered_path
+        else:
+            folder = PROJECT_ROOT / entered_path
+    
+        if not folder.exists():
+            print(f"\nError: '{folder}' does not exist.")
+            continue
+
+        if not folder.is_dir():
+            print(f"\nError: '{folder}' is not a directory.")
+            continue
+
+        return folder
+
+
+def get_scan_mode() -> bool:
+    """
+    Ask whether the scan should include nested subfolders.
+
+    Returns:
+        False for the current folder only.
+        True for a recursive scan.
+    """
+    while True:
+        choice = input(
+            "\nScan mode:\n"
+            "  1) Current folder only\n"
+            "  2) Current folder + all subfolders (recursive)\n"
+            "Choose 1 or 2: "
+        ).strip()
+
+        if choice == "1":
+            return False
+
+        if choice == "2":
+            return True
+
+        print("Please enter 1 or 2.")
+
+
+def format_size(size_bytes: int) -> str:
+    """
+    Convert a raw byte count into a human-readable file size.
+
+    The playful size labels are kept because they do not interfere
+    with the actual file-size calculations.
+    """
+    # First, decide which playful category the file belongs to.
+    if size_bytes < BYTES_PER_KB:
+        label = "itty bitty"
+    elif size_bytes < BYTES_PER_MB:
+        label = "mousey"
+    elif size_bytes < 3 * BYTES_PER_MB:
+        label = "medium"
+    elif size_bytes < 50 * BYTES_PER_MB:
+        label = "biggun"
+    else:
+        label = "hella big"
+
+    # Next, choose the most readable unit.
+    # A 5 GB file should display as 5.0 GB instead of 5120.0 MB.
+    if size_bytes < BYTES_PER_KB:
+        readable = f"{size_bytes} B"
+    elif size_bytes < BYTES_PER_MB:
+        readable = f"{size_bytes / BYTES_PER_KB:.1f} KB"
+    elif size_bytes < BYTES_PER_GB:
+        readable = f"{size_bytes / BYTES_PER_MB:.1f} MB"
+    else:
+        readable = f"{size_bytes / BYTES_PER_GB:.1f} GB"
+
+    return f"{readable} ({label})"
+
+def create_error_result(
+        folder: Path,
+        recursive: bool,
+        message: str
+    ) -> DirectoryInfo:
+    """
+    Create a DirectoryInfor result for fails.
+    Every DirectoryInfo must have same keys.
+    """
+    return {
+        "success": False,
+        "error": message,
+        "name": folder.name or str(folder),
+        "absolute_path": folder,
+        "recursive": recursive,
+        "files": 0,
+        "folders": 0,
+        "total_items": 0,
+        "file_types": Counter(),
+        "largest_file": None,
+        "largest_size": 0,
+        "skipped_items": [],
+        "skipped_count": 0,
+    }
+
+def inspect_directory(
+    folder: Path,
+    recursive: bool = False,
+) -> DirectoryInfo:
+    """
+    Inspect a directory and collect information about its contents.
+
+    Counts:
+    - Files
+    - Folders
+    - File extensions
+    - Total items
+
+    Also records:
+    - The largest file
+    - The largest file's size
+    """
+    file_count = 0
+    folder_count = 0
+    file_types: Counter[str] = Counter()
+
+    # None means that no file has been found yet.
+    largest_file: Path | None = None
+
+    # Starting at -1 ensures that a zero-byte file can still become
+    # the largest file when it is the first file found.
+    largest_size = -1
+
+    skipped_items: list[str] = []
+
+    try:
+        absolute_path = folder.resolve()
+
+        # rglob("*") scans every nested level.
+        # iterdir() scans only the immediate folder.
+        if recursive:
+            items = folder.rglob("*")
+        else:
+            items = folder.iterdir()
+
+        for item in items:
+            try:
+                if item.is_file():
+                    size = item.stat().st_size
+                    file_count += 1
+
+                    suffix = (
+                        item.suffix.lower()
+                        if item.suffix
+                        else "(no extension)"
+                    )
+
+                    file_types[suffix] += 1
+                    if size > largest_size:
+                        largest_size = size
+                        largest_file = item
+                elif item.is_dir():
+                    folder_count += 1
+            except PermissionError:
+                skipped_items.append(
+                    f"{item}: Permission denied"   
+                )
+                continue
+
+            except FileNotFoundError:
+                skipped_items.append(
+                    f"{item}: Item disappeared during the scan"
+                )
+                continue
+
+            except OSError:
+                skipped_items.append(
+                    f"{item}: An unexpected error occurred"
+                )
+                continue
+    except PermissionError:
+        return create_error_result(
+            folder=folder,
+            recursive=recursive,
+            message=(
+                f"Permission denied while accessing '{folder}'."
+            ),
+        )
+            
+    except FileNotFoundError:
+        return create_error_result(
+            folder=folder,
+            recursive=recursive,
+            message=f"'{folder}' disappeared during the scan.",
+        )
+ 
+
+    except OSError as error:
+        return create_error_result(
+            folder=folder,
+            recursive=recursive,
+            message=f"Something went wrong while accessing '{folder}': {error}"
+            ),
+        
+
+    total_items = file_count + folder_count
+
+    # folder.name can be empty for a drive root such as C:\.
+    # In that case, display the complete path instead.
+    display_name = folder.name or str(folder)
+
+    return {
+        "success": True,
+        "error": None,
+        "name": display_name,
+        "absolute_path": absolute_path,
+        "recursive": recursive,
+        "files": file_count,
+        "folders": folder_count,
+        "total_items": total_items,
+        "file_types": Counter(
+            dict(sorted(file_types.items()))
+        ),
+        "largest_file": largest_file,
+        "largest_size": largest_size,
+        "skipped_items": skipped_items,
+        "skipped_count": len(skipped_items),
+    }
+
+def run_format_size_tests() -> None:
+    
+    test_cases = [
+        (0, "0 B (itty bitty)"),
+        (512, "512 B (itty bitty)"),
+        (1023, "1023 B (itty bitty)"),
+        (1024, "1.0 KB (mousey)"),
+        (1536, "1.5 KB (mousey)"),
+        (1048575, "1024.0 KB (mousey)"),
+        (1048576, "1.0 MB (medium)"),
+        (3145727, "3.0 MB (medium)"),
+        (3145728, "3.0 MB (biggun)"),
+        (52428800, "50.0 MB (hella big)"),
+        (1073741824, "1.0 GB (hella big)"),
+        (5368709120, "5.0 GB (hella big)"),
+    ]
+
+    passed=0
+    failed=0
+
+    print("\nRunning format_size() tests...")
+    print("=" * 65)
+
+    for size_bytes, expected in test_cases:
+        actual = format_size(size_bytes)
+
+        if actual == expected:
+            passed =+ 1
+            print(f"PASSED: {size_bytes} -> {actual}")
+        else:
+            failed += 1
+            print(f"FAILED: {size_bytes: >12} bytes")
+            print(f"  Expected: {expected}")
+            print(f"  Actual:   {actual}")
+
+    print("=" * 65)
+    print(f"Passed: {passed}")
+    print(f"Failed: {failed}")
+    print(f"Total tests: {len(test_cases)}")
+
+    if failed == 0:
+        print("All tests passed for format_size().")
+    else:
+        print("Some tests failed for format_size().")
+
+    
+
+def print_report(info: DirectoryInfo) -> None:
+    """
+    Display the completed directory inspection report.
+    """
+    separator = "=" * 55
+
+    if info["recursive"]:
+        mode_label = "Recursive scan with subfolders"
+    else:
+        mode_label = "Current folder only"
+
+    print(f"\n{separator}")
+    print("Directory Inspection Report")
+    print(separator)
+
+    print(f"Folder name:   {info['name']}")
+    print(f"Absolute path: {info['absolute_path']}")
+    print(f"Scan mode:     {mode_label}")
+
+    print()
+    print(f"Files:         {info['files']}")
+    print(f"Folders:       {info['folders']}")
+    print(f"Total items:   {info['total_items']}")
+    print(f"Skipped items: {info['skipped_count']}")
+    print("All tests passed for format_size().")
+
+    print()
+    print("File types found:")
+
+    if info["file_types"]:
+        for suffix, count in info["file_types"].items():
+            print(f"  {suffix:<16} {count}")
+    else:
+        print("  No files found.")
+
+
+    print()
+
+    largest_file = info["largest_file"]
+    largest_size = info["largest_size"]
+
+    if largest_file is not None:
+        print("Largest file:")
+        print(f"  Path: {largest_file}")
+        print(f"  Size: {format_size(largest_size)}")
+    else:
+        print("Largest file:  No files found")
+
+    skipped_items = info["skipped_items"]
+
+    if skipped_items:
+        print()
+        print("Warning:")
+
+        for warning in info["skipped_items"]:
+            print(f"  -{warning}")
+
+    print(separator)
+
+def get_program_mode() -> str:
+    """
+    Ask the user whether to run the program normally or run tests.
+
+    Returns:
+        "normal" for normal operation.
+        "test" for running tests.
+    """
+    while True:
+        choice = input(
+            "\nProgram mode:\n"
+            "  1) Normal operation\n"
+            "  2) Run format_size() tests\n"
+            "Choose 1 or 2: "
+        ).strip()
+
+        if choice == "1":
+            return "normal"
+
+        if choice == "2":
+            return "test"
+
+        print("Please enter 1 or 2.")
+
+def main() -> None:
+    """
+    Coordinate the program's major steps.
+    """
+    mode = get_program_mode()
+
+    if mode == "test":
+        run_format_size_tests()
+        return
+    
+    folder = get_directory()
+
+    if folder is None:
+        print("\nProgram closed.")
+        return
+
+    recursive = get_scan_mode()
+
+    info = inspect_directory(folder, recursive)
+
+    # Every inspect_directory() result includes "success".
+    # This allows main() to decide whether to display a report
+    # or display an error.
+    if not info["success"]:
+        print(f"\nError: {info['error']}")
+        return
+
+    print_report(info)
+
+
+if __name__ == "__main__":
+    main()

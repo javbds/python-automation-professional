@@ -1,0 +1,3 @@
+2026-08-10 17:31:04,311 | INFO | Copied: 02_file_operations\archive_test\documents\draft.txt -> archive_output\documents\draft.txt
+2026-08-10 17:31:04,311 | INFO | Copied: 02_file_operations\archive_test\documents\report.pdf -> archive_output\documents\report.pdf
+2026-08-10 17:31:04,311 | INFO | Copied: 02_file_operations\archive_test\notes.txt -> archive_output\notes.txt

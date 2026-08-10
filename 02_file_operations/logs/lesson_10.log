@@ -1,0 +1,13 @@
+2026-08-10 17:42:30,736 | INFO | Archive program started.
+2026-08-10 17:42:49,489 | INFO | Found 3 matching files.
+2026-08-10 17:42:49,496 | INFO | Skipped existing file: archive_output\documents\draft.txt
+2026-08-10 17:42:49,496 | INFO | Skipped existing file: archive_output\documents\report.pdf
+2026-08-10 17:42:49,496 | INFO | Skipped existing file: archive_output\notes.txt
+2026-08-10 17:42:49,509 | INFO | Archive operation completed. Copied=0 Skipped=3 Failed=0
+2026-08-10 17:43:40,416 | INFO | Archive program started.
+2026-08-10 17:44:04,375 | INFO | Found 4 matching files.
+2026-08-10 17:44:04,377 | INFO | Copied: 02_file_operations\archive_test\documents\draft.txt -> final_archive_output\documents\draft.txt
+2026-08-10 17:44:04,381 | INFO | Copied: 02_file_operations\archive_test\images\vacation.jpg -> final_archive_output\images\vacation.jpg
+2026-08-10 17:44:04,381 | INFO | Copied: 02_file_operations\archive_test\notes.txt -> final_archive_output\notes.txt
+2026-08-10 17:44:04,385 | INFO | Copied: 02_file_operations\archive_test\photo.jpg -> final_archive_output\photo.jpg
+2026-08-10 17:44:04,387 | INFO | Archive operation completed. Copied=4 Skipped=0 Failed=0

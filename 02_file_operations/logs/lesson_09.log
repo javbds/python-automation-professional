@@ -1,0 +1,18 @@
+2026-08-10 15:59:12,708 | INFO | Program started.
+2026-08-10 15:59:12,708 | INFO | File operation completed.
+2026-08-10 15:59:12,708 | WARNING | Example warning generated.
+2026-08-10 15:59:12,708 | ERROR | Example error generated.
+2026-08-10 16:21:35,650 | INFO | Starting folder inspection: 02_file_operations\logging_test
+2026-08-10 16:21:35,650 | INFO | Found folder: documents
+2026-08-10 16:21:35,650 | INFO | Found file: notes.txt
+2026-08-10 16:21:35,650 | INFO | Found file: report.pdf
+2026-08-10 16:21:35,650 | INFO | Folder inspection completed successfully.
+2026-08-10 16:27:57,537 | INFO | Program started.
+2026-08-10 16:28:15,999 | INFO | Starting folder inspection: 02_file_operations\logging_test
+2026-08-10 16:28:16,000 | INFO | Found folder: documents
+2026-08-10 16:28:16,000 | INFO | Found file: notes.txt
+2026-08-10 16:28:16,000 | INFO | Found file: report.pdf
+2026-08-10 16:28:16,000 | INFO | Folder inspection completed successfully.
+2026-08-10 16:28:16,000 | INFO | Program finished.
+2026-08-10 16:28:44,569 | INFO | Program started.
+2026-08-10 16:28:46,899 | WARNING | Program cancelled by user.

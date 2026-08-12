@@ -1,0 +1,5 @@
+{
+    "source_folder": "03_cli_and_config/cli_test",
+    "recursive": true,
+    "extensions": [".txt", ".pdf"]
+}

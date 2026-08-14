@@ -61,7 +61,7 @@ def get_required_source(
     
     if not isinstance(source_value, str):
         print(
-            "Error: 'source_value' must be a string"
+            "Error: 'source_folder' must be a string"
         )
         return None
 

@@ -1,0 +1,53 @@
+2026-08-18 20:18:09,280 | INFO | Batch copy started. Dry run: True
+2026-08-18 20:18:37,417 | INFO | Batch copy started. Dry run: True
+2026-08-18 20:23:49,101 | INFO | Batch copy started. Dry run: True
+2026-08-18 20:23:49,104 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_7.txt
+2026-08-18 20:23:49,104 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_7.pdf
+2026-08-18 20:23:49,104 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_7.txt
+2026-08-18 20:25:58,250 | INFO | Batch copy started. Dry run: True
+2026-08-18 20:25:58,252 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_7.txt
+2026-08-18 20:25:58,253 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_7.pdf
+2026-08-18 20:25:58,253 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_7.txt
+2026-08-18 20:25:58,253 | INFO | Dry run completed. No files were changed.
+2026-08-18 20:33:46,627 | INFO | Batch copy started. Dry run: False
+2026-08-18 20:33:46,628 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_7.txt
+2026-08-18 20:33:46,628 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_7.pdf
+2026-08-18 20:33:46,628 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_7.txt
+2026-08-18 20:33:46,630 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_7.txt
+2026-08-18 20:33:46,631 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_7.pdf
+2026-08-18 20:33:46,632 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_7.txt
+2026-08-18 20:33:46,634 | INFO | Batch copy completed. Copied=3 Skipped=0 Failed=0
+2026-08-18 20:38:30,446 | INFO | Batch copy started. Dry run: False
+2026-08-18 20:38:30,447 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_8.txt
+2026-08-18 20:38:30,448 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_8.pdf
+2026-08-18 20:38:30,448 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_8.txt
+2026-08-18 20:38:30,448 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\missing.txt -> 04_filesystem_automation\batch_test\destination\missing.txt
+2026-08-18 20:38:30,450 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_8.txt
+2026-08-18 20:38:30,452 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_8.pdf
+2026-08-18 20:38:30,454 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_8.txt
+2026-08-18 20:38:30,455 | WARNING | Skipped missing or invalid source: 04_filesystem_automation\batch_test\source\missing.txt
+2026-08-18 20:38:30,456 | INFO | Batch copy completed. Copied=3 Skipped=1 Failed=0
+2026-08-18 20:39:30,229 | INFO | Batch copy started. Dry run: False
+2026-08-18 20:39:30,231 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_9.txt
+2026-08-18 20:39:30,231 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_9.pdf
+2026-08-18 20:39:30,232 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_9.txt
+2026-08-18 20:39:30,234 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_9.txt
+2026-08-18 20:39:30,235 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_9.pdf
+2026-08-18 20:39:30,236 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_9.txt
+2026-08-18 20:39:30,236 | INFO | Batch copy completed. Copied=3 Skipped=0 Failed=0
+2026-08-18 20:41:02,836 | INFO | Batch copy started. Dry run: False
+2026-08-18 20:41:02,839 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_10.txt
+2026-08-18 20:41:02,840 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_10.pdf
+2026-08-18 20:41:02,840 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_10.txt
+2026-08-18 20:41:02,842 | ERROR | Copy verification failed: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_10.txt
+2026-08-18 20:41:02,843 | ERROR | Copy verification failed: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_10.pdf
+2026-08-18 20:41:02,844 | ERROR | Copy verification failed: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_10.txt
+2026-08-18 20:41:02,845 | INFO | Batch copy completed. Copied=0 Skipped=0 Failed=3
+2026-08-18 20:41:36,682 | INFO | Batch copy started. Dry run: False
+2026-08-18 20:41:36,683 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_11.txt
+2026-08-18 20:41:36,684 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_11.pdf
+2026-08-18 20:41:36,684 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_11.txt
+2026-08-18 20:41:36,685 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_11.txt
+2026-08-18 20:41:36,688 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_11.pdf
+2026-08-18 20:41:36,689 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_11.txt
+2026-08-18 20:41:36,694 | INFO | Batch copy completed. Copied=3 Skipped=0 Failed=0

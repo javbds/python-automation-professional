@@ -1,0 +1,8 @@
+{
+    "source_folder": "04_filesystem_automation/batch_test/source",
+    "destination_folder": "04_filesystem_automation/batch_test/destination",
+    "extensions": [
+        ".txt",
+        ".pdf"
+    ]
+}

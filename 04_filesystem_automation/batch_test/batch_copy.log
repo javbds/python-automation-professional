@@ -51,3 +51,49 @@
 2026-08-18 20:41:36,688 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_11.pdf
 2026-08-18 20:41:36,689 | INFO | Copied and verified: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_11.txt
 2026-08-18 20:41:36,694 | INFO | Batch copy completed. Copied=3 Skipped=0 Failed=0
+2026-08-18 20:59:49,833 | INFO | Batch copy started. Dry run: True
+2026-08-18 20:59:49,836 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 20:59:49,836 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 20:59:49,836 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 20:59:49,837 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:02:57,011 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:02:57,014 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:02:57,015 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:02:57,015 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:02:57,015 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:03:45,268 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:03:45,269 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:03:45,277 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:04:24,159 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:04:24,163 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:04:24,163 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:04:24,163 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:04:24,164 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:09:10,790 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:09:10,792 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:09:10,793 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:09:10,793 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:09:10,793 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:10:04,548 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:10:04,550 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\config_test_destination\one.txt
+2026-08-18 21:10:04,550 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\config_test_destination\report.pdf
+2026-08-18 21:10:04,550 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\config_test_destination\two.txt
+2026-08-18 21:10:04,550 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:10:49,155 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:10:49,157 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:10:49,158 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:10:49,158 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:10:49,158 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:21:58,425 | ERROR | Missing configuration keys: ['destination_folder']
+2026-08-18 21:23:19,928 | ERROR | Configuration file contains invalid JSON: 04_filesystem_automation\batch_config.json
+2026-08-18 21:23:39,395 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:23:39,398 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:23:39,398 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:23:39,399 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:23:39,399 | INFO | Dry run completed. No files were changed.
+2026-08-18 21:27:46,355 | ERROR | extensions cannot be empty.
+2026-08-18 21:28:14,124 | INFO | Batch copy started. Dry run: True
+2026-08-18 21:28:14,127 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\one.txt -> 04_filesystem_automation\batch_test\destination\one_12.txt
+2026-08-18 21:28:14,127 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\report.pdf -> 04_filesystem_automation\batch_test\destination\report_12.pdf
+2026-08-18 21:28:14,128 | INFO | COPY planned: 04_filesystem_automation\batch_test\source\two.txt -> 04_filesystem_automation\batch_test\destination\two_12.txt
+2026-08-18 21:28:14,128 | INFO | Dry run completed. No files were changed.

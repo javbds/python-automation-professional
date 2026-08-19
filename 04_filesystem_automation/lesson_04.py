@@ -58,9 +58,9 @@ def build_copy_plan(
         )
 
         if destination.exists():
-            action = "SKIP"
-        else:
-            action = "COPY"
+            destination = get_unique_path(destination)
+
+        action = "COPY"
 
         plan.append(
             {
@@ -137,6 +137,18 @@ def get_unique_path(destination: Path) -> Path:
 
     if not destination.exists():
         return destination
+
+    counter = 1
+
+    while True:
+        candidate = destination.with_name(
+            f"{destination.stem}_{counter}{destination.suffix}"
+        )
+
+        if not candidate.exists():
+            return candidate
+
+        counter += 1
 
 def main() -> None:
     args = parse_arguments()

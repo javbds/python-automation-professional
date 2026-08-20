@@ -2,8 +2,10 @@ import subprocess
 import logging
 import json
 
+
 from pathlib import Path
 from typing import NamedTuple
+
 
 logging.basicConfig(
     filename="system_automation.log",
@@ -15,6 +17,7 @@ class CommandResult(NamedTuple):
     return_code: int
     output: str
     error: str
+
 
 def run_command(
     command: list[str],
@@ -34,7 +37,7 @@ def run_command(
 
     except FileNotFoundError:
         print("Command could not be found.")
-        logging.erro("Command could not be found: %s, command[0]")
+        logging.error("Command could not be found: %s, command[0]")
         return None
 
 def get_running_processes() -> str | None:

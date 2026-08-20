@@ -2,8 +2,8 @@ from importlib import import_module
 from unittest.mock import patch
 
 
-lesson_08 = import_module(
-    "05_system_administration.lesson_08"
+lesson_10 = import_module(
+    "05_system_administration.lesson_10"
 )
 
 
@@ -14,12 +14,10 @@ def test_process_is_running():
     explorer.exe
     """
 
-    result = lesson_08.is_process_running(
+    assert lesson_10.is_process_running(
         processes,
         "Code.exe",
-    )
-
-    assert result is True
+    ) is True
 
 
 def test_process_is_not_running():
@@ -29,23 +27,22 @@ def test_process_is_not_running():
     explorer.exe
     """
 
-    result = lesson_08.is_process_running(
+    assert lesson_10.is_process_running(
         processes,
-        "notepad.exe",
-    )
+        "DefNotRun.exe",
+    ) is False
 
-    assert result is False
 
 def test_run_command_success():
     with patch.object(
-        lesson_08.subprocess,
+        lesson_10.subprocess,
         "run",
     ) as mock_run:
         mock_run.return_value.returncode = 0
         mock_run.return_value.stdout = "fake output\n"
         mock_run.return_value.stderr = ""
 
-        result = lesson_08.run_command(["fake-command"])
+        result = lesson_10.run_command(["fake-command"])
 
     assert result is not None
     assert result.return_code == 0
@@ -55,11 +52,11 @@ def test_run_command_success():
 
 def test_run_command_not_found():
     with patch.object(
-        lesson_08.subprocess,
+        lesson_10.subprocess,
         "run",
         side_effect=FileNotFoundError,
     ):
-        result = lesson_08.run_command(
+        result = lesson_10.run_command(
             ["fake-command"]
         )
 

@@ -1,0 +1,7 @@
+{
+    "processes": [
+        "Code.exe",
+        "python.exe",
+        "DefNotRun.exe"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "server_name" : "prod-server-01",
+    "process_name" : "Code.exe",
+    "api_url" : "https://api.github.com",
+    "timeout" : 5,
+    "max_attempts" : 3
+}
